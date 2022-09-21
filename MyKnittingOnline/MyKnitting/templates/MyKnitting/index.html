@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>MyKnittingOnline {{ user.username }}</title>
+        {% load static %}
+    </head>
+    <body>
+        <div id="main">
+            <h2>
+                Welcome,  {{user.username}}!
+            </h2> 
+            {% if projects %}
+                {% for project in projects%}
+                <p> {{ project.title }} </p>
+                {% endfor %}
+            {% else %}
+            <h3> You don't have any projects </h3>
+            {% endif %}
+        </div> 
+    </body>
+</html>
