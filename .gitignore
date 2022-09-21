@@ -1,0 +1,4 @@
+/venv
+secret_key.py
+db.sqlite3
+MyKnittingOnline/MyKnittingOnline/__pycache__
