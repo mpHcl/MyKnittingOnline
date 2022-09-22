@@ -13,3 +13,27 @@ def index(request):
         return render(request, 'MyKnitting/index.html', context={
             'projects' : projects, 
         })
+
+
+def projects(request): 
+    if request.user.is_authenticated:
+        projects = Project.objects.filter(owner=request.user)
+        return render(request, 'MyKnitting/projects.html', context={
+            'projects' : projects, 
+        })
+
+
+def needles(request):
+    if request.user.is_authenticated:
+        needles = Needles.objects.filter(owner=request.user)
+        return render(request, 'MyKnitting/needles.html', context={
+            'needles' : needles, 
+        })
+
+
+def yarns(request): 
+    if request.user.is_authenticated:
+        yarns = Yarn.objects.filter(owner=request.user)
+        return render(request, 'MyKnitting/yarns.html', context={
+            'yarns' : yarns, 
+        })
