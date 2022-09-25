@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>MyKnittingOnline {{ user.username }}</title>
+        <title>Your needles, {{ user.username }}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Latest compiled and minified CSS -->
@@ -36,11 +36,12 @@
           </nav>
         
           {% if needles %}
-            <h3>Your needles</h3>
-            <button type="button" class="btn btn-primary" style="margin:10px">ADD</button>
-            <br>
+            <h3>Your needles
+              <a  class="btn btn-primary" style="margin:10px">ADD</a>
+              <br>
+            </h3>
             {% for item in needles%}
-                <a href="#"> {{ item.type}}: {{ item.size }}</a>
+                <a href="#"> {{ item.type}}: {{ item.size }}</a><br>
             {% endfor %}
           {% else %}
             <h3> You don't have any needles yet, try adding new one!</h3>

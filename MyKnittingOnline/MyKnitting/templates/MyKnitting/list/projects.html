@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Your projects, {{ user.username }}</title>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</html>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">MyKnittingOnline</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link"  href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/projects">Projects</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/yarns">Yarns</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/needles">Needles</a>
+                  </li>
+              </div>
+            </div>
+        </nav>
+
+          {% if projects %}
+          <div style="margin: 2% 15%; width: 70%;">
+            <h3> Your projects: 
+            <a class="btn btn-primary" style="margin:10px;">ADD</a>
+            <br>
+          </h3> 
+          
+          <table style=" width: 80%; margin: auto;">
+            {% for project in projects %}
+              {% if project.completed %}
+                <tr>
+                  {% for project_temp, photos_temp in photos.items %}
+                    {% if project == project_temp %}
+                      {% for photo in photos_temp %}
+                        <td><img src="/media/{{ photo.photo }}" style="height: 100px;"/></td>
+                      {% endfor %}
+                    {% endif %}
+                  {% endfor %}
+                  <td><a class="link-primary" href="#">{{ project.title }}</a></td>
+                </tr>
+              {% else %}
+                <tr>
+                    <td style="border:2px solid darkgray; width: 60%;">
+                      <div style= "width: 100%; display: inline-block;">
+                        {% for project_temp, photos_temp in photos.items %}
+                          {% if project == project_temp %}
+                            {% for photo in photos_temp %}
+                              <img src="/media/{{ photo.photo }}" style="height: 100px;"/>
+                            {% endfor %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </td>
+                    
+                    <td style="vertical-align: top; width: 40%; border:2px solid darkgray;"><a class="link-primary">{{ project.title }}</a></td>
+
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+          </div>
+          {% else %}
+
+          <h1> You don't have any projects yet</h>
+
+          {% endif %}
+
+          
+    </body>
+
+</html>

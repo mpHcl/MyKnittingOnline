@@ -18,15 +18,21 @@ def index(request):
 def projects(request): 
     if request.user.is_authenticated:
         projects = Project.objects.filter(owner=request.user)
-        return render(request, 'MyKnitting/projects.html', context={
+        photos = {}
+        for project in projects:
+            photos_for_project = Photo.objects.filter(project=project)
+            photos[project] = photos_for_project
+
+        return render(request, 'MyKnitting/list/projects.html', context={
             'projects' : projects, 
+            'photos' : photos,
         })
 
 
 def needles(request):
     if request.user.is_authenticated:
         needles = Needles.objects.filter(owner=request.user)
-        return render(request, 'MyKnitting/needles.html', context={
+        return render(request, 'MyKnitting/list/needles.html', context={
             'needles' : needles, 
         })
 
@@ -34,6 +40,6 @@ def needles(request):
 def yarns(request): 
     if request.user.is_authenticated:
         yarns = Yarn.objects.filter(owner=request.user)
-        return render(request, 'MyKnitting/yarns.html', context={
+        return render(request, 'MyKnitting/list/yarns.html', context={
             'yarns' : yarns, 
         })

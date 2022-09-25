@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>MyKnittingOnline {{ user.username }}</title>
+        <title>Your yarn, {{ user.username }}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Latest compiled and minified CSS -->
@@ -34,7 +34,20 @@
               </div>
             </div>
           </nav>
-        
+
+
+          {% if yarns %}
+          <h3>Your yarns
+            <a class="btn btn-primary" style="margin:10px">ADD</a>
+            <br>
+          </h3>
+          {% for item in yarns %}
+              <a href="#"> {{ item.name }}: {{ item.size }} - {{ item.color }} ({{ item.amount_owned }})</a><br>
+          {% endfor %}
+        {% else %}
+          <h3> You don't have any yarns yet, try adding new one!</h3>
+          <button type="button" class="btn btn-primary" style="margin:10px">ADD</button>
+        {% endif %}
 
 
           
