@@ -38,7 +38,7 @@
         </nav>
 
           {% if projects %}
-          <div style="margin: 2% 15%; width: 70%;">
+          <div style="margin: 2% 30%;">
             <h3> Your projects: 
             <a class="btn btn-primary" style="margin:10px;">ADD</a>
             <br>
@@ -51,7 +51,7 @@
                   {% for project_temp, photos_temp in photos.items %}
                     {% if project == project_temp %}
                       {% for photo in photos_temp %}
-                        <td><img src="/media/{{ photo.photo }}" style="height: 100px;"/></td>
+                        <td><img src="/media/{{ photo.photo }}" style="height: 100px; width: auto;"/></td>
                       {% endfor %}
                     {% endif %}
                   {% endfor %}
@@ -59,20 +59,19 @@
                 </tr>
               {% else %}
                 <tr>
-                    <td style="border:2px solid darkgray; width: 60%;">
-                      <div style= "width: 100%; display: inline-block;">
-                        {% for project_temp, photos_temp in photos.items %}
-                          {% if project == project_temp %}
-                            {% for photo in photos_temp %}
-                              <img src="/media/{{ photo.photo }}" style="height: 100px;"/>
-                            {% endfor %}
-                          {% endif %}
-                        {% endfor %}
-                      </div>
-                    </td>
-                    
-                    <td style="vertical-align: top; width: 40%; border:2px solid darkgray;"><a class="link-primary">{{ project.title }}</a></td>
+                  <td style="vertical-align: top; border:2px solid darkgray; width:auto;"><a class="link-primary">{{ project.title }}</a></td>
 
+                  <td style="border:2px solid darkgray; width:auto;">
+                    <div style= "width: 100%; display: inline-block; width: auto;">
+                      {% for project_temp, photos_temp in photos.items %}
+                        {% if project == project_temp %}
+                          {% for photo in photos_temp %}
+                            <img src="/media/{{ photo.photo }}" style="height: 100px;"/>
+                          {% endfor %}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </td>
                 </tr>
               {% endif %}
             {% endfor %}

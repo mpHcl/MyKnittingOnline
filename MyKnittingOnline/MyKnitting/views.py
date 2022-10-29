@@ -13,6 +13,8 @@ def index(request):
         return render(request, 'MyKnitting/index.html', context={
             'projects' : projects, 
         })
+    else:
+        return HttpResponse("User not logged")
 
 
 def projects(request): 
@@ -27,7 +29,8 @@ def projects(request):
             'projects' : projects, 
             'photos' : photos,
         })
-
+    else:
+        return HttpResponse("User not logged")
 
 def needles(request):
     if request.user.is_authenticated:
@@ -35,7 +38,8 @@ def needles(request):
         return render(request, 'MyKnitting/list/needles.html', context={
             'needles' : needles, 
         })
-
+    else:
+        return HttpResponse("User not logged")
 
 def yarns(request): 
     if request.user.is_authenticated:
@@ -43,3 +47,5 @@ def yarns(request):
         return render(request, 'MyKnitting/list/yarns.html', context={
             'yarns' : yarns, 
         })
+    else:
+        return HttpResponse("User not logged")
